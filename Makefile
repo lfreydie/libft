@@ -6,7 +6,7 @@
 #    By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 10:31:53 by lefreydier        #+#    #+#              #
-#    Updated: 2023/01/26 14:51:21 by lfreydie         ###   ########.fr        #
+#    Updated: 2023/01/28 12:50:06 by lfreydie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HDIR	=	./includes/
 
 SDIR	=	./src/
 
-INCLUDE	=	$(HDIR)libft.h	$(HDIR)get_next_line.h $(HDIR)ft_printf.h
+INCLUDE	=	$(HDIR)libft.h
 
 # Colors
 GREEN=\033[0;32m

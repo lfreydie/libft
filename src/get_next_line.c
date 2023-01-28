@@ -6,11 +6,11 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:25:21 by lefreydier        #+#    #+#             */
-/*   Updated: 2023/01/26 12:51:48 by lfreydie         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:36:05 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "../includes/libft.h"
 
 char	*ft_tmp(char *tmp, char *buffer)
 {
@@ -35,7 +35,7 @@ char	*ft_read(int fd, char *buffer)
 	if (!buftmp)
 		return (NULL);
 	bytes_count = 1;
-	while (bytes_count > 0 && !ft_strchr(buffer, '\n'))
+	while (bytes_count > 0 && !ft_strchr_gnl(buffer, '\n'))
 	{
 		bytes_count = read(fd, buftmp, BUFFER_SIZE);
 		if (bytes_count == -1 || (bytes_count == 0 && ft_strlen(buffer) < 1))
@@ -44,7 +44,7 @@ char	*ft_read(int fd, char *buffer)
 		tmp = ft_tmp(tmp, buffer);
 		if (!tmp)
 			return (NULL);
-		buffer = ft_strjoin(tmp, buftmp);
+		buffer = ft_strjoin_gnl(tmp, buftmp);
 		if (!buffer)
 			return (free(buftmp), NULL);
 	}
@@ -61,7 +61,7 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	while (buffer[i] != '\n' && buffer[i])
 		i ++;
-	res = malloc((i + ft_strchr(buffer, '\n') + 1) * sizeof(res));
+	res = malloc((i + ft_strchr_gnl(buffer, '\n') + 1) * sizeof(res));
 	if (!res)
 		return (NULL);
 	i = 0;

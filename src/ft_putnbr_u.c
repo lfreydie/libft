@@ -6,11 +6,11 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:20:22 by lfreydie          #+#    #+#             */
-/*   Updated: 2023/01/26 12:51:27 by lfreydie         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:31:29 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
 int	putnbr_u(unsigned int nbr)
 {

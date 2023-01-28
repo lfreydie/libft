@@ -6,13 +6,13 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:55:59 by lefreydier        #+#    #+#             */
-/*   Updated: 2023/01/26 12:51:48 by lfreydie         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:35:48 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "../includes/libft.h"
 
-int	ft_strchr(char *str, char c)
+int	ft_strchr_gnl(char *str, char c)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	size_t	len_tot;
 	char	*new;

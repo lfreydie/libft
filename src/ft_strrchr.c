@@ -6,7 +6,7 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:44:40 by lfreydie          #+#    #+#             */
-/*   Updated: 2023/01/26 12:50:43 by lfreydie         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:34:06 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)s + adr);
 	return (NULL);
 }
-/*
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%s\n", ft_strrchr(av[1], atoi(av[2])));
-	return (0);
-}
-*/

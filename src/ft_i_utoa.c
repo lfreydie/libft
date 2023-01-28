@@ -6,13 +6,13 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 15:12:21 by lfreydie          #+#    #+#             */
-/*   Updated: 2023/01/26 12:51:27 by lfreydie         ###   ########.fr       */
+/*   Updated: 2023/01/28 12:49:28 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
-unsigned int	get_nb_digit(long n_l, int sign)
+static unsigned int	get_nb_digit(long n_l, int sign)
 {
 	unsigned int	nb_digit;
 
@@ -29,7 +29,7 @@ unsigned int	get_nb_digit(long n_l, int sign)
 	return (nb_digit);
 }
 
-void	convert_nb(char *outstr, long n_l, unsigned int nb_digit,
+static void	convert_nb(char *outstr, long n_l, unsigned int nb_digit,
 		int sign)
 {
 	outstr[nb_digit] = '\0';
