@@ -6,73 +6,84 @@
 #    By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 10:31:53 by lefreydier        #+#    #+#              #
-#    Updated: 2023/01/28 12:50:06 by lfreydie         ###   ########.fr        #
+#    Updated: 2023/04/27 11:06:50 by lfreydie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# ---------- Project ---------- #
+
 CC	=	cc
-
-CFLAGS	=	-Wall -Wextra -Werror
-
 NAME	=	libft.a
-
-RM	=	rm -f
-
+CFLAGS	=	-Wall -Wextra -Werror
 AR	=	ar -rcs
 
-HDIR	=	./includes/
+# ---------- Directories --------- #
 
-SDIR	=	./src/
+HD_DIR = ./includes
+SRC_DIR = ./src
+OBJ_DIR = ./objs
 
-INCLUDE	=	$(HDIR)libft.h
+# ------------ Delete ------------ #
 
-# Colors
+RM = rm -f
+RM_OPT = -r
+
+# ------------ Colors ------------ #
+
 GREEN=\033[0;32m
 RED=\033[0;31m
 PINK=\033[0;35m
 BLUE=\033[0;34m
 END=\033[0m
 
-#main
-SOURCES	+=	$(SDIR)ft_atoi.c $(SDIR)ft_bzero.c $(SDIR)ft_isalnum.c $(SDIR)ft_isalpha.c $(SDIR)ft_tolower.c \
-			$(SDIR)ft_isascii.c $(SDIR)ft_isdigit.c $(SDIR)ft_isprint.c $(SDIR)ft_memchr.c $(SDIR)ft_memcpy.c \
-			$(SDIR)ft_memcmp.c $(SDIR)ft_memset.c $(SDIR)ft_strchr.c $(SDIR)ft_strlcat.c $(SDIR)ft_toupper.c \
-			$(SDIR)ft_strlcpy.c $(SDIR)ft_strlen.c $(SDIR)ft_strncmp.c $(SDIR)ft_calloc.c $(SDIR)ft_strrchr.c \
-			$(SDIR)ft_memmove.c $(SDIR)ft_strdup.c $(SDIR)ft_strnstr.c $(SDIR)ft_strjoin.c $(SDIR)ft_putchar_fd.c \
-			$(SDIR)ft_putstr_fd.c $(SDIR)ft_putendl_fd.c $(SDIR)ft_putnbr_fd.c $(SDIR)ft_strmapi.c \
-			$(SDIR)ft_strtrim.c $(SDIR)ft_substr.c $(SDIR)ft_split.c $(SDIR)ft_itoa.c $(SDIR)ft_striteri.c
+# ------------- Files ------------ #
 
-#main 2
-SOURCES	+=	$(SDIR)ft_lstnew.c $(SDIR)ft_lstadd_front.c $(SDIR)ft_lstsize.c $(SDIR)ft_lstlast.c \
-			$(SDIR)ft_lstadd_back.c $(SDIR)ft_lstdelone.c $(SDIR)ft_lstclear.c \
-			$(SDIR)ft_lstiter.c $(SDIR)ft_lstmap.c
-#ft_printf
-SOURCES	+=	$(SDIR)ft_i_utoa.c $(SDIR)ft_print_ptr.c $(SDIR)ft_printf.c $(SDIR)ft_put_hex.c\
-			$(SDIR)ft_putchar.c $(SDIR)ft_putnbr_u.c $(SDIR)ft_putstr.c $(SDIR)ft_strchr.c\
-			$(SDIR)ft_strlen.c
+# ------------ LIBFT ------------- #
+SRC_F	+=	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_tolower.c \
+			ft_isascii.c ft_isdigit.c ft_isprint.c ft_memchr.c ft_memcpy.c \
+			ft_memcmp.c ft_memset.c ft_strchr.c ft_strlcat.c ft_toupper.c \
+			ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_calloc.c ft_strrchr.c \
+			ft_memmove.c ft_strdup.c ft_strnstr.c ft_strjoin.c ft_putchar_fd.c \
+			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c \
+			ft_strtrim.c ft_substr.c ft_split.c ft_itoa.c ft_striteri.c
+# --------- LIBFT BONUS ---------- #
+SRC_F	+=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+			ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
+			ft_lstiter.c ft_lstmap.c
+# ------------ PRINTF ------------ #
+SRC_F	+=	ft_i_utoa.c ft_print_ptr.c ft_printf.c ft_put_hex.c\
+			ft_putchar.c ft_putnbr_u.c ft_putstr.c ft_strchr.c\
+			ft_strlen.c
+# -------- GET NEXT LINE --------- #
+SRC_F	+=	get_next_line.c get_next_line_utils.c
 
-#get_next_line
-SOURCES	+=	$(SDIR)get_next_line.c $(SDIR)get_next_line_utils.c
+SRC = $(addprefix $(SRC_DIR)/, $(SRC_F))
+OBJ = $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC:.c=.o))
 
-OBJECTS	=	$(SOURCES:.c=.o)
+# ----------- Compiles ----------- #
 
-%.o : %.c
-		@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+$(NAME) :	$(OBJ)
+	@$(AR) $(NAME) $(OBJ)
+	@echo "$(GREEN) ==== libft compiled ==== $(END)"
 
-$(NAME):	$(OBJECTS) $(INCLUDE)
-			@$(AR) $(NAME) $(OBJECTS)
-			@echo "$(GREEN) ==== libft compiled ==== $(END)"
+# ------------- Link ------------- #
 
-all:	$(NAME)
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(HD_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -I $(HD_DIR) -c $< -o $@
 
-clean:
-		@$(RM) $(OBJECTS)
-		@echo "$(BLUE) ==== All objects removed ==== $(END)"
+# ------------- Rules ------------ #
 
-fclean:	clean
-		@$(RM) $(NAME)
-		@echo "$(PINK) ==== All executables removed ==== $(END)"
+all :	$(NAME)
 
-re:	fclean all
+clean :
+	@$(RM) $(RM_OPT) $(OBJ_DIR)
+	@echo "$(PINK) ==== All object removed ==== $(END)"
 
-.PHONY:	all clean fclean re
+fclean :	clean
+	@$(RM) $(NAME)
+	@echo "$(RED) ==== Executables removed ==== $(END)"
+
+re :	fclean all
+
+.PHONY :	all clean fclean re
