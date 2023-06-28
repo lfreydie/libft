@@ -6,7 +6,7 @@
 /*   By: lfreydie <lfreydie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:42:23 by lfreydie          #+#    #+#             */
-/*   Updated: 2023/04/27 10:45:28 by lfreydie         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:13:05 by lfreydie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		d[i] = s[i];
 	return (dest);
 }
+/*
+int	main (void)
+{
+	void		*d = NULL;
+	const void	*s = NULL;
+	size_t		n = 6;
 
+	printf("TEST\n");
+	printf("%p \n", ft_memcpy(d, s, n));
+	printf("TEST\n");
+	printf("%p \n", memcpy(d, s, n));
+	printf("TEST\n");
+	return (0);
+}
+*/
